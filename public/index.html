@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Real Estates</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <body>
+    <div id="app" class="container">
+      <h3>Get latest offer here: </h3>
+      <button @click="getData()" type="button" class="btn btn-outline-primary">Show</button>  <br>
+      <div v-if="editI">
+      <input type="text" class="mt-2 form-control w-25" v-model="editI">
+      <button @click="editConfirm()" type="button" class="btn btn-sm btn-outline-success ms-3">
+      <i class="fa-solid fa-check"></i>
+      </button>
+      </div>
+      <table class="table">
+        <thead>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Adress</th>
+          <th>Price</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <tr v-for="i of immos" class="align-middle">
+            <td>
+              <img :src="i.image" width="130" height="130" />
+            </td>
+            <td>{{i.title}}</td>
+            <td>{{i.postCode}} <br>
+                {{i.city}} <br>
+                {{i.country}} </td>
+            <td>{{i.price}}</td>
+            <td>
+              <button @click="delData(i.id)" type="button" class="btn btn-sm btn-outline-danger">
+              <i class="fa-regular fa-trash-can"></i>
+              </button>
+              <button @click="editData(i.id, i.price)" type="button" class="btn btn-sm btn-outline-primary ms-3">
+              <i class="fa-solid fa-pencil"></i>
+            </button></td>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.45/vue.global.min.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
